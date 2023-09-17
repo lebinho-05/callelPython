@@ -1,7 +1,6 @@
-import files as f
-from json import load
-
-f.files = []
+import utilities.files as f
+from utilities.errors import PersonalizeException as PE
+from utilities import errors
 
 fileCsv = f.CreateCSV("dados", 
 "nome,idade\nCallebe,9"
@@ -41,3 +40,14 @@ print(fileJson.get["pessoa1"]["nome"])
 print(f.CreateJSON.cont)
 
 print(f.files)
+
+class Expt(PE):...
+
+try:
+    raise Expt("oi")
+except PE:
+    print("n")
+
+errors.ers["Expt"] = Expt
+
+raise errors.ers["Expt"]("oi")
